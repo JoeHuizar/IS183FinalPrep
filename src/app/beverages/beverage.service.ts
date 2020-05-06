@@ -13,26 +13,49 @@ export class BeverageService {
         this.apiUrl = environment.apiUrl;
     }
 
-    async getBeverages(): Promise<Array<Object>> {
-        const resp = await this.http.get(`${this.apiUrl}/beverage`).toPromise();
-        const beverages = resp.json();
-        return beverages;
+    getBeverages(): Promise<Array<Object>> {
+        return this.http.get(`${this.apiUrl}/beverage`)
+            .toPromise()
+            .then((resp) => {
+                let beverages = resp.json();
+                return beverages;
+            });
     }
 
-    async getBeverageById(beverageId): Promise<Object> {
-        return;
+    getBeverageById(beverageId): Promise<Object> {
+        return this.http.get(`${this.apiUrl}/beverage/id/${beverageId}`)
+            .toPromise()
+            .then((resp) => {
+                let beverages = resp.json();
+                return beverages;
+            });
     }
 
-    async addBeverage(beverage): Promise<Object> {
-        return;
+    addBeverage(beverage): Promise<Object> {
+        return this.http.post(`${this.apiUrl}/beverage`, beverage)
+            .toPromise()
+            .then((resp) => {
+                let beverages = resp.json();
+                return beverages;
+            });
     }
 
-    async deleteBeverage(id): Promise<Object> {
-        return;
+    deleteBeverage(id): Promise<Object> {
+        return this.http.delete(`${this.apiUrl}/beverage/id/${id}`)
+            .toPromise()
+            .then((resp) => {
+                let beverages = resp.json();
+                return beverages;
+            });
     }
 
-    async updateBeverage(id, beverage): Promise<Object> {
-        return;
+    updateBeverage(id, beverage): Promise<Object> {
+        return this.http.put(`${this.apiUrl}/beverage/id/${id}`, beverage)
+            .toPromise()
+            .then((resp) => {
+                let beverages = resp.json();
+                return beverages;
+            });
     }
 
 }

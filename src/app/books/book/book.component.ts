@@ -24,10 +24,10 @@ export class BookComponent implements OnInit {
       });
   }
 
-  updateBook(book: any) {
+  async updateBook(book: any) {
     const bookID = book.id;
     delete book.id;
-    this.bookService.updateBook(bookID, book).then((resp) => {
+    await this.bookService.updateBook(bookID, book).then((resp) => {
       if (resp) {
         this.router.navigate(['books']);
       }
